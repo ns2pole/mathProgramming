@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.IntegerServiceImpl;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 
 @Controller
@@ -31,13 +33,13 @@ public class TestController {
     }
 
     @RequestMapping("/primeFactorization")
-    public String primeFactorization(int integer, Model model){
+    @ResponseBody
+    public int[] primeFactorization2(int integer, Model model){
         IntegerServiceImpl impl = new IntegerServiceImpl();
         int[] primeFactors = impl.getPrimeFactorsOf(integer);
-        // Logger logger = LoggerFactory.getLogger(TestController.class);
         model.addAttribute("primeFactors", primeFactors[0]);
-        // logger.info(str);
-        return "integer";
+        return impl.getPrimeFactorsOf(integer);
     }
+
 
 }

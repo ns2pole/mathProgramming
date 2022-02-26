@@ -1,8 +1,6 @@
 $(function() {
     $('input[name="integer"]').change(function(e) {
         e.preventDefault();
-        alert($(this).val());
-
         $.ajax({
           url: "/test/primeFactorization",
           type: "POST",
@@ -12,7 +10,7 @@ $(function() {
           }
         })
         .done(function(data) {
-          alert("success");
+            alert(data);
         })
         .fail(function() {
           alert("error");
