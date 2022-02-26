@@ -2,7 +2,7 @@
 <html lang="jp" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
-    <script type="text/javascript" th:src="@{/js/integer.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery3-6-0.js}"></script>
     <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <meta charset="UTF-8">
@@ -11,9 +11,13 @@
 <body>
     \[初等整数論のページ\]
     <h4>
-        <input name="primeFactorizationInput" type="text" placeholder= "input integer you want to factorization">
+        <form method="post" action="/test/primeFactorization">
+            <input name="integer" type="text" placeholder= "input integer you want to factorization">
+            <button type="submit">送信</button>
+        </form>
     </h4>
-    <p th:text="${primeFactors}"></p>
+    <h3 th:text="${primeFactors}"></h3>
     \( \displaystyle x = -\frac{b}{a}\)
 </body>
 </html>
+<script type="text/javascript" th:src="@{/js/integer.js}"></script>
