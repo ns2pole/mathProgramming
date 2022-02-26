@@ -1,0 +1,9 @@
+input[type=text] {
+    width:400px;
+    height:30px;
+    font-size: 150%;
+    text-align: center;
+}
+h4 {
+    text-align:center;
+}
