@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="jp" xmlns:th="http://www.thymeleaf.org">
 <head>
+<script type="text/javascript" id="MathJax-script" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <meta charset="UTF-8">
     <title>Spring Boot入門</title>
 </head>
 <body>
     <h1>Spring Boot Home</h1>
     <h3 th:text="${tag}"></h3>
-
+    一次方程式 \(ax+b=0\) の解は\( \displaystyle x = -\frac{b}{a}\)
     <form method="post" action="/test/input">
         <input name="testInput" type="text">
         <button type="submit">送信</button>
