@@ -2,7 +2,7 @@ function primeFactorization() {
     $('input[name="integer"]').change(function(e) {
         e.preventDefault();
         $.ajax({
-          url: "/test/primeFactorization",
+          url: "/primeFactorization",
           type: "GET",
           data: {
             integer: $(this).val(),
@@ -10,7 +10,7 @@ function primeFactorization() {
           }
         })
         .done(function(html) {
-          var html = html.substr( 719, 392 );
+          var html = html.substr(719, 392);
           alert(html);
           $('html').children('body').html(html); // 抽出したもので現在のページのbodyタグの中身を置き換える
         })
@@ -19,6 +19,7 @@ function primeFactorization() {
         })
     });
 };
+
 primeFactorization();
 
 $(document).ajaxStop(function(d){
