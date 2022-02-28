@@ -49,7 +49,7 @@ public class TestController {
         int eulerPhiFunctionVal = impl.getEulerPhiFunctionValOf(integer);
         Logger logger = LoggerFactory.getLogger(TestController.class);
         logger.info("test");
-        model.addAttribute("primeFactors", "$" + integer + "=" + eulerPhiFunctionVal + "$");
+        model.addAttribute("primeFactors", "$\\phi(" + integer + ")=" + eulerPhiFunctionVal + "$");
         return "integer";
     }
 

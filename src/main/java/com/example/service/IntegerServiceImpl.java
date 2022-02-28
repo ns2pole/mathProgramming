@@ -28,7 +28,6 @@ public class IntegerServiceImpl implements IntegerService {
         return ints;
     }
 
-
     @Override
     public ArrayList<Integer> getSievedNumsFor(int sieve, ArrayList<Integer> nums) {
         for(int i = 0; i < nums.size(); i++) {
