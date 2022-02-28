@@ -1,4 +1,4 @@
-package com.example.demo2.controller;
+package com.example.math.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Controller
-public class TestController {
+public class MathController {
     @RequestMapping("/index")
     public String index(Model model){
         model.addAttribute("tag","Spr Boot + Thymeleaf入門");
@@ -22,7 +22,7 @@ public class TestController {
     public String text(int integer,HttpServletRequest req, HttpServletResponse res, Model model) throws IOException {
         IntegerServiceImpl impl = new IntegerServiceImpl();
         int eulerPhiFunctionVal = impl.getEulerPhiFunctionValOf(integer);
-        Logger logger = LoggerFactory.getLogger(TestController.class);
+        Logger logger = LoggerFactory.getLogger(MathController.class);
         logger.info("test");
         model.addAttribute("primeFactors", "$\\phi(" + integer + ")=" + eulerPhiFunctionVal + "$");
         return "index";
