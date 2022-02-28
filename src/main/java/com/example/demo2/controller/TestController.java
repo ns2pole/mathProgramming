@@ -44,8 +44,12 @@ public class TestController {
     // }
 
     @RequestMapping("/primeFactorization")
-    public String text(HttpServletRequest req, HttpServletResponse res, Model model) throws IOException {
-        model.addAttribute("primeFactors", 2);
+    public String text(int integer,HttpServletRequest req, HttpServletResponse res, Model model) throws IOException {
+        IntegerServiceImpl impl = new IntegerServiceImpl();
+        int eulerPhiFunctionVal = impl.getEulerPhiFunctionValOf(integer);
+        Logger logger = LoggerFactory.getLogger(TestController.class);
+        logger.info("test");
+        model.addAttribute("primeFactors", "$" + integer + "=" + eulerPhiFunctionVal + "$");
         return "integer";
     }
 

@@ -10,7 +10,7 @@ function primeFactorization() {
           }
         })
         .done(function(html) {
-          var html = html.substr( 719, 386 );
+          var html = html.substr( 719, 392 );
           alert(html);
           $('html').children('body').html(html); // 抽出したもので現在のページのbodyタグの中身を置き換える
         })
