@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.IntegerServiceImpl;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/test")
@@ -28,17 +30,23 @@ public class TestController {
     }
 
     @RequestMapping("/integer")
-    public String integer(){
+    public String integer(Model model){
         return "integer";
     }
 
+    // @RequestMapping("/primeFactorization")
+    // // @ResponseBody
+    // public String primeFactorization(int integer, Model model){
+    //     IntegerServiceImpl impl = new IntegerServiceImpl();
+    //     int[] primeFactors = impl.getPrimeFactorsOf(integer);
+    //     model.addAttribute("primeFactors", primeFactors[2]);
+    //     return "integer";
+    // }
+
     @RequestMapping("/primeFactorization")
-    @ResponseBody
-    public int[] primeFactorization2(int integer, Model model){
-        IntegerServiceImpl impl = new IntegerServiceImpl();
-        int[] primeFactors = impl.getPrimeFactorsOf(integer);
-        model.addAttribute("primeFactors", primeFactors[0]);
-        return impl.getPrimeFactorsOf(integer);
+    public String text(HttpServletRequest req, HttpServletResponse res, Model model) throws IOException {
+        model.addAttribute("primeFactors", 2);
+        return "integer";
     }
 
 

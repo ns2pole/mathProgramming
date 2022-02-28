@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="jp" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
-    <script type="text/javascript" th:src="@{/js/jquery3-6-0.js}"></script>
-    <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    <meta charset="UTF-8">
-    <title>初等整数論</title>
-</head>
-<body>
-    \[初等整数論のページ\]
-    <h4>
-        <input name="integer" type="text" placeholder= "input integer you want to factorization">
-    </h4>
-    <h3 th:text="${primeFactors}"></h3>
-    \( \displaystyle x = -\frac{b}{a}\)
-</body>
+    <head>
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
+        </script>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+              }
+            });
+        </script>
+
+        <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <meta charset="UTF-8">
+        <title>初等整数論</title>
+    </head>
+    <body>
+        <h2>初等整数論のページ</h2>
+        <h4>
+            <form method="get" action="/test/primeFactorization">
+                <input name="integer" type="text" placeholder= "input integer you want to factorization">
+            </form>
+        </h4>
+        <h4 th:text="${primeFactors}" />
+        \( \displaystyle x = -\frac{b}{a}\)
+        <div id="abc"></div>
+        <h4 id="def"></h4>
+    </body>
+    <script type="text/javascript" th:src="@{/js/integer.js}"></script>
 </html>
-<script type="text/javascript" th:src="@{/js/integer.js}"></script>
