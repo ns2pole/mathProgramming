@@ -23,9 +23,9 @@ public class MathController {
     public String getTemplateSetEulerFunctionVal(int integer,HttpServletRequest req, HttpServletResponse res, Model model) throws IOException {
         IntegerServiceImpl impl = new IntegerServiceImpl();
         int eulerPhiFunctionVal = impl.getEulerPhiFunctionValOf(integer);
-        String stringOfEulerPhiFunctionCalculate = impl.getStringForMathJaxAboutEulerPhiFunctionFrom(integer, eulerPhiFunctionVal);
+        // String stringOfEulerPhiFunctionCalculate = impl.getStringForMathJaxAboutEulerPhiFunctionFrom(integer, eulerPhiFunctionVal);
         // String stringOfCayleyTableCalculate = impl.getStringForMathJaxAboutCayleyTableFrom(integer, integer);
-        return stringOfEulerPhiFunctionCalculate;
+        return new Integer(eulerPhiFunctionVal).toString();
     }
 
     @ResponseBody
@@ -33,8 +33,8 @@ public class MathController {
     public String getTemplateSetPrimeNumsUnderSetVal(int integer,HttpServletRequest req, HttpServletResponse res, Model model) throws IOException {
         IntegerServiceImpl impl = new IntegerServiceImpl();
         ArrayList<Integer> primeNumsUnderSetVal = impl.getPrimeNumsUnder(integer);
-        String stringOfPrimeNumsUnderSetVal = impl.getStringForMathJaxAboutPrimeNumsUnderSetVal(integer, primeNumsUnderSetVal);
-        return stringOfPrimeNumsUnderSetVal;
+        // String stringOfPrimeNumsUnderSetVal = impl.getStringForMathJaxAboutPrimeNumsUnderSetVal(integer, primeNumsUnderSetVal);
+        return primeNumsUnderSetVal.toString();
     }
     
 

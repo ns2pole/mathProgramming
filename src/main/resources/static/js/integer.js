@@ -10,6 +10,7 @@ function request() {
           }
         })
         .done(function(str) {
+          alert(str);
           document.getElementById('stringOfEulerPhiFunctionCalculate').textContent = str;
         })
         .fail(function() {
@@ -28,6 +29,7 @@ function request() {
         }
       })
       .done(function(str) {
+        alert(str);
         document.getElementById('stringOfPrimeNumsUnderSetVal').textContent = str;
       })
       .fail(function() {

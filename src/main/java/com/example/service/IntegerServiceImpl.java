@@ -73,14 +73,6 @@ public class IntegerServiceImpl implements IntegerService {
         return true;
     }
 
-    public String getStringForMathJaxAboutEulerPhiFunctionFrom(int input, int output) {
-        return "$\\phi(" + input + ")=" + output + "$";
-    }
-
-    public String getStringForMathJaxAboutPrimeNumsUnderSetVal(int input,  ArrayList<Integer> output) {
-        return input + "以下の素数の集合 $=\\{" + getMathJaxStringOfIntegerArrayList(output) + "\\}$";
-    }
-
     private String getMathJaxStringOfIntegerArrayList(ArrayList<Integer> arr) {
         String str = "";
         for(int i = 0;i < arr.size(); i++) {
@@ -90,10 +82,19 @@ public class IntegerServiceImpl implements IntegerService {
         return str.substring(0, str.length() - 2);
     }
 
+    public String getStringForMathJaxAboutEulerPhiFunctionFrom(int input, int output) {
+        return "$\\phi(" + input + ")=" + output + "$";
+    }
+
+    public String getStringForMathJaxAboutPrimeNumsUnderSetVal(int input,  ArrayList<Integer> output) {
+        return input + "以下の素数の集合 $=\\{" + getMathJaxStringOfIntegerArrayList(output) + "\\}$";
+    }
 
     //お試しで書いている。
     public String getStringForMathJaxAboutCayleyTableFrom(int input, int output) {
         return "\\begin{array} {|c|c|} \\hline \\cdot & 0_1 & 0_2 & 0_3 \\\\ \\hline 1_0 & 1_1 & 1_2 & 1_3 \\\\ \\hline 2_0 & 2_1 & 2_2 & 2_3 \\\\ \\hline 3_0 & 3_1 & 3_2 & 3_3 \\\\ \\hline  \\end{array}";
     }
+    
+
 
 }
