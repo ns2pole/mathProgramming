@@ -1,6 +1,6 @@
 function request() {
     $('input[name="EulerPhiFunction"]').change(function(e) {
-        e.preventDefault();
+        // e.preventDefault();
         $.ajax({
           url: "/EulerPhiFunction",
           type: "GET",
