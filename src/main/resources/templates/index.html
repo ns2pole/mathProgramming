@@ -19,15 +19,20 @@
         <title>初等整数論</title>
     </head>
     <body>
-        <h2>\( \displaystyle \phi \ \ \)初等整数論のページ</h2>
+        <h2>\( \displaystyle \dagger \ \ \)初等整数論のページ</h2>
         <h4>
-            <form method="get" action="/test/primeFactorization">
-                <input name="integer" type="text" placeholder= "input integer you want to factorization">
+            <form method="get" action="/EulerPhiFunction">
+                <input name="EulerPhiFunction" type="text" placeholder= "you can get Euler function value">
             </form>
         </h4>
-        <h4 th:text="${primeFactors}" />
-        <div id="abc"></div>
-        <h4 id="def"></h4>
+        <h4 th:text="${stringOfEulerPhiFunctionCalculate}" />
+        <h4>
+            <form method="get" action="/PrimeNumsUnderSetVal">
+                <input id="PrimeNumsUnderSetVal" name="PrimeNumsUnderSetVal" type="text" placeholder= "you can get primes under this value">
+            </form>
+        </h4>
+        <h4 id="stringOfPrimeNumsUnderSetVal" th:text="${stringOfPrimeNumsUnderSetVal}" />
+        <h4 th:text="${cayleyTable}" />
     </body>
     <script type="text/javascript" th:src="@{/js/integer.js}"></script>
 </html>

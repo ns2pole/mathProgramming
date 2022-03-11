@@ -1,8 +1,8 @@
-function primeFactorization() {
-    $('input[name="integer"]').change(function(e) {
+function EulerPhiFunction() {
+    $('input[name="EulerPhiFunction"]').change(function(e) {
         e.preventDefault();
         $.ajax({
-          url: "/primeFactorization",
+          url: "/EulerPhiFunction",
           type: "GET",
           data: {
             integer: $(this).val(),
@@ -11,13 +11,35 @@ function primeFactorization() {
         })
         .done(function(html) {
           var bodyOfHtml = html.substr(getLengthFromStartToHeadEnd(html), getLengthOfHtmlBody(html));
-          alert(bodyOfHtml);
           $('html').children('body').html(bodyOfHtml); // 抽出したもので現在のページのbodyタグの中身を置き換える
+          document.getElementById('stringOfPrimeNumsUnderSetVal').textContent = '$\{1,3,4,5\}$';
         })
         .fail(function() {
           alert("error");
         })
     });
+
+    $('input[name="PrimeNumsUnderSetVal"]').change(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: "/PrimeNumsUnderSetVal",
+        type: "GET",
+        data: {
+          integer: $(this).val(),
+          _csrf: $("*[name=_csrf]").val()  // CSRFトークンを送信
+        }
+      })
+      .done(function(html) {
+        var bodyOfHtml = html.substr(getLengthFromStartToHeadEnd(html), getLengthOfHtmlBody(html));
+          alert(bodyOfHtml);
+        $('html').children('body').html(bodyOfHtml); // 抽出したもので現在のページのbodyタグの中身を置き換える
+      })
+      .fail(function() {
+        alert("error");
+      })
+
+  });
+
 };
 
 //indexOfは一致した文字列の最初の場所を返すので、"<"の位置を返してしまう。残りの/head>の調整分が"8"
@@ -34,10 +56,9 @@ function getLengthOfHtmlBody(html) {
   return lengthOfHtmlBody;
 }
 
-primeFactorization();
+EulerPhiFunction();
 
 $(document).ajaxStop(function(d){
-  primeFactorization();
+  EulerPhiFunction();
   MathJax.Hub.Typeset();
-  
 });
