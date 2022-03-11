@@ -73,15 +73,6 @@ public class IntegerServiceImpl implements IntegerService {
         return true;
     }
 
-
-    public int[] getPrimeFactorsOf(int integer) {
-        int[] ints = new int[3];
-        ints[0] = 4;
-        ints[1] = 5;
-        ints[2] = 6;
-        return ints;
-    }
-
     public String getStringForMathJaxAboutEulerPhiFunctionFrom(int input, int output) {
         return "$\\phi(" + input + ")=" + output + "$";
     }
