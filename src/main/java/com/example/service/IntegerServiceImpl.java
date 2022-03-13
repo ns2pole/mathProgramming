@@ -64,31 +64,15 @@ public class IntegerServiceImpl implements IntegerService {
     }
 
     public boolean isPrime(int integer) {
-        ArrayList<Integer> sievedNums = this.getNaturalNumsLowerThan(integer);
-        for(int k = 2; k*k < integer;k++) {
-            if(integer % k == 0) {
+        ArrayList<Integer> primes = this.getPrimeNumsUnder((int)Math.floor(Math.sqrt(integer)));
+        for(int i = 0; i < primes.size(); i++) {
+            if(integer % primes.get(i) == 0) {
                 return false;
             }
         }
         return true;
     }
 
-    private String getMathJaxStringOfIntegerArrayList(ArrayList<Integer> arr) {
-        String str = "";
-        for(int i = 0;i < arr.size(); i++) {
-            str = str + arr.get(i);
-            str = str + ", ";
-        }
-        return str.substring(0, str.length() - 2);
-    }
-
-    public String getStringForMathJaxAboutEulerPhiFunctionFrom(int input, int output) {
-        return "$\\phi(" + input + ")=" + output + "$";
-    }
-
-    public String getStringForMathJaxAboutPrimeNumsUnderSetVal(int input,  ArrayList<Integer> output) {
-        return input + "以下の素数の集合 $=\\{" + getMathJaxStringOfIntegerArrayList(output) + "\\}$";
-    }
 
     //お試しで書いている。
     public String getStringForMathJaxAboutCayleyTableFrom(int input, int output) {

@@ -10,21 +10,26 @@ import java.util.ArrayList;
 public class MathController {
     @ResponseBody
     @RequestMapping("/EulerPhiFunction")
-    public String getTemplateSetEulerFunctionVal(int integer) {
+    public String getEulerFunctionValStr(int integer) {
         IntegerServiceImpl impl = new IntegerServiceImpl();
         int eulerPhiFunctionVal = impl.getEulerPhiFunctionValOf(integer);
-        // String stringOfEulerPhiFunctionCalculate = impl.getStringForMathJaxAboutEulerPhiFunctionFrom(integer, eulerPhiFunctionVal);
-        // String stringOfCayleyTableCalculate = impl.getStringForMathJaxAboutCayleyTableFrom(integer, integer);
         return new Integer(eulerPhiFunctionVal).toString();
     }
 
     @ResponseBody
     @RequestMapping("/PrimeNumsUnderSetVal")
-    public String getTemplateSetPrimeNumsUnderSetVal(int integer) {
+    public String getPrimeNumsStrUnderSetVal(int integer) {
         IntegerServiceImpl impl = new IntegerServiceImpl();
         ArrayList<Integer> primeNumsUnderSetVal = impl.getPrimeNumsUnder(integer);
-        // String stringOfPrimeNumsUnderSetVal = impl.getStringForMathJaxAboutPrimeNumsUnderSetVal(integer, primeNumsUnderSetVal);
         return primeNumsUnderSetVal.toString();
+    }
+
+    @ResponseBody
+    @RequestMapping("/isPrime")
+    public String getIsPrimeStr(int integer) {
+        IntegerServiceImpl impl = new IntegerServiceImpl();
+        boolean isPrime = impl.isPrime(integer);
+        return String.valueOf(isPrime);
     }
     
 

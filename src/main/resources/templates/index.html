@@ -22,7 +22,7 @@
         <h2>\( \displaystyle \dagger \ \ \)初等整数論のページ</h2>
         <h4>
             <form method="get" action="/EulerPhiFunction" onsubmit="return false;">
-                <input name="EulerPhiFunction" type="text" placeholder= "you can get Euler function value">
+                <input id="EulerPhiFunction" name="EulerPhiFunction" type="text" placeholder= "you can get Euler function value">
             </form>
         </h4>
         <h4 id="stringOfEulerPhiFunctionCalculate"/>
@@ -32,6 +32,12 @@
             </form>
         </h4>
         <h4 id="stringOfPrimeNumsUnderSetVal"/>
+        <h4>
+            <form method="get" action="/isPrime" onsubmit="return false;">
+                <input id="isPrime" name="isPrime" type="text" placeholder= "you can judge prime">
+            </form>
+        </h4>
+        <h4 id="stringOfIsPrime"/>
         <h4 th:text="${cayleyTable}" />
     </body>
     <script type="text/javascript" th:src="@{/js/integer.js}"></script>
