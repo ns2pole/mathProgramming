@@ -6,14 +6,7 @@ function request() {
 
 function EulerPhiFunctionRequest() {
   $('input[id="EulerPhiFunction"]').change(function() {
-    $.ajax({
-      url: "/EulerPhiFunction",
-      type: "GET",
-      data: {
-        integer: $(this).val(),
-        _csrf: $("*[name=_csrf]").val()  // CSRFトークンを送信
-      }
-    })
+    $.ajax(getArrToSendIntegerByAjax(this, "/EulerPhiFunction"))
     .done(function(str) {
       document.getElementById('EulerPhiFunctionCalculateResult').textContent = "$\\phi(" + document.getElementById("EulerPhiFunction").value + ")=" + str + "$";
     })
@@ -25,14 +18,7 @@ function EulerPhiFunctionRequest() {
 
 function primeNumsUnderSetValRequest() {
   $('input[id="PrimeNumsUnderSetVal"]').change(function() {
-    $.ajax({
-      url: "/PrimeNumsUnderSetVal",
-      type: "GET",
-      data: {
-        integer: $(this).val(),
-        _csrf: $("*[name=_csrf]").val()
-      }
-    })
+    $.ajax(getArrToSendIntegerByAjax(this, "/PrimeNumsUnderSetVal"))
     .done(function(str) {
       document.getElementById('primeNumsUnderSetValResult').textContent = document.getElementById("PrimeNumsUnderSetVal").value + "以下の素数の集合 = $" + getChangedStrFromArrayListStrToMathJaxStr(str) + "$";
     })
@@ -44,14 +30,7 @@ function primeNumsUnderSetValRequest() {
 
 function isPrimeRequest() {
   $('input[id="isPrime"]').change(function() {
-    $.ajax({
-      url: "/isPrime",
-      type: "GET",
-      data: {
-        integer: $(this).val(),
-        _csrf: $("*[name=_csrf]").val()
-      }
-    })
+    $.ajax(getArrToSendIntegerByAjax(this, "/isPrime"))
     .done(function(str) {
       document.getElementById('isPrimeResult').textContent = document.getElementById("isPrime").value + "は素数か？" + str;
     })
@@ -65,6 +44,17 @@ function getChangedStrFromArrayListStrToMathJaxStr(integerArrayListstr) {
   str = integerArrayListstr.substr(1);
   str = str.substring(0, str.length - 1);
   return "\\{" + str + "\\}";
+}
+
+function getArrToSendIntegerByAjax(inputForm, url) {
+  return {
+    url: url,
+    type: "GET",
+    data: {
+      integer: $(inputForm).val(),
+      _csrf: $("*[name=_csrf]").val()
+    }
+  }
 }
 //⬆︎⬆︎⬆︎ここまでは定義
 
