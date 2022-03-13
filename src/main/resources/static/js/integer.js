@@ -1,22 +1,30 @@
 function request() {
-  $('input[name="EulerPhiFunction"]').change(function() {
-      $.ajax({
-        url: "/EulerPhiFunction",
-        type: "GET",
-        data: {
-          integer: $(this).val(),
-          _csrf: $("*[name=_csrf]").val()  // CSRFトークンを送信
-        }
-      })
-      .done(function(str) {
-        document.getElementById('stringOfEulerPhiFunctionCalculate').textContent = "$\\phi(" + document.getElementById("EulerPhiFunction").value + ")=" + str + "$";
-      })
-      .fail(function() {
-        alert("error");
-      })
-  });
+  EulerPhiFunctionRequest();
+  primeNumsUnderSetValRequest();
+  isPrimeRequest();
+};
 
-  $('input[name="PrimeNumsUnderSetVal"]').change(function(e) {
+function EulerPhiFunctionRequest() {
+  $('input[id="EulerPhiFunction"]').change(function() {
+    $.ajax({
+      url: "/EulerPhiFunction",
+      type: "GET",
+      data: {
+        integer: $(this).val(),
+        _csrf: $("*[name=_csrf]").val()  // CSRFトークンを送信
+      }
+    })
+    .done(function(str) {
+      document.getElementById('stringOfEulerPhiFunctionCalculate').textContent = "$\\phi(" + document.getElementById("EulerPhiFunction").value + ")=" + str + "$";
+    })
+    .fail(function() {
+      alert("error");
+    })
+  });
+}
+
+function primeNumsUnderSetValRequest() {
+  $('input[id="PrimeNumsUnderSetVal"]').change(function() {
     $.ajax({
       url: "/PrimeNumsUnderSetVal",
       type: "GET",
@@ -32,8 +40,10 @@ function request() {
       alert("error");
     })
   });
+}
 
-  $('input[name="isPrime"]').change(function() {
+function isPrimeRequest() {
+  $('input[id="isPrime"]').change(function() {
     $.ajax({
       url: "/isPrime",
       type: "GET",
@@ -49,8 +59,18 @@ function request() {
       alert("error");
     })
   });
-};
+}
 
+function getChangedStrFromArrayListStrToMathJaxStr(integerArrayListstr) {
+  str = integerArrayListstr.substr(1);
+  str = str.substring(0, str.length - 1);
+  return "\\{" + str + "\\}";
+}
+
+
+//⬆︎⬆︎⬆︎ここまでは定義
+
+//ここからが動く所。
 request();
 
 $(document).ajaxStop(function() {
@@ -58,8 +78,4 @@ $(document).ajaxStop(function() {
   MathJax.Hub.Typeset();
 });
 
-function getChangedStrFromArrayListStrToMathJaxStr(integerArrayListstr) {
-  str = integerArrayListstr.substr(1);
-  str = str.substring(0, str.length - 1);
-  return "\\{" + str + "\\}";
-}
+

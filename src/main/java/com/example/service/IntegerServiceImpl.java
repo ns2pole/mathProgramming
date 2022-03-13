@@ -73,12 +73,9 @@ public class IntegerServiceImpl implements IntegerService {
         return true;
     }
 
-
     //お試しで書いている。
     public String getStringForMathJaxAboutCayleyTableFrom(int input, int output) {
         return "\\begin{array} {|c|c|} \\hline \\cdot & 0_1 & 0_2 & 0_3 \\\\ \\hline 1_0 & 1_1 & 1_2 & 1_3 \\\\ \\hline 2_0 & 2_1 & 2_2 & 2_3 \\\\ \\hline 3_0 & 3_1 & 3_2 & 3_3 \\\\ \\hline  \\end{array}";
     }
-    
-
 
 }
