@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class IntegerServiceImpl implements IntegerService {
@@ -26,6 +28,21 @@ public class IntegerServiceImpl implements IntegerService {
         }
 		return sievedNums;
 	}
+
+    public boolean isPrime(int integer) {
+        ArrayList<Integer> primes = this.getPrimeNumsUnder((int)Math.floor(Math.sqrt(integer)));
+        // Logger logger = LoggerFactory.getLogger(IntegerServiceImpl.class);
+        // logger.info(primes.toString());
+        if(integer == 1) {
+            return false;
+        }
+        for(int i = 0; i < primes.size(); i++) {
+            if(integer % primes.get(i) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public ArrayList<Integer> convertToArrayListFrom(int[] arr) {
         return (ArrayList<Integer>) Arrays.stream(arr).boxed().collect(Collectors.toList());
@@ -61,16 +78,6 @@ public class IntegerServiceImpl implements IntegerService {
 
     public int getEulerPhiFunctionValOf(int integer) {
         return this.getCoprimeNumsLowerThan(integer).size();
-    }
-
-    public boolean isPrime(int integer) {
-        ArrayList<Integer> primes = this.getPrimeNumsUnder((int)Math.floor(Math.sqrt(integer)));
-        for(int i = 0; i < primes.size(); i++) {
-            if(integer % primes.get(i) == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 
     //お試しで書いている。

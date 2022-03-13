@@ -15,7 +15,7 @@ function EulerPhiFunctionRequest() {
       }
     })
     .done(function(str) {
-      document.getElementById('stringOfEulerPhiFunctionCalculate').textContent = "$\\phi(" + document.getElementById("EulerPhiFunction").value + ")=" + str + "$";
+      document.getElementById('EulerPhiFunctionCalculateResult').textContent = "$\\phi(" + document.getElementById("EulerPhiFunction").value + ")=" + str + "$";
     })
     .fail(function() {
       alert("error");
@@ -34,7 +34,7 @@ function primeNumsUnderSetValRequest() {
       }
     })
     .done(function(str) {
-      document.getElementById('stringOfPrimeNumsUnderSetVal').textContent = document.getElementById("PrimeNumsUnderSetVal").value + "以下の素数の集合 = $" + getChangedStrFromArrayListStrToMathJaxStr(str) + "$";
+      document.getElementById('primeNumsUnderSetValResult').textContent = document.getElementById("PrimeNumsUnderSetVal").value + "以下の素数の集合 = $" + getChangedStrFromArrayListStrToMathJaxStr(str) + "$";
     })
     .fail(function() {
       alert("error");
@@ -53,7 +53,7 @@ function isPrimeRequest() {
       }
     })
     .done(function(str) {
-      document.getElementById('stringOfIsPrime').textContent = document.getElementById("isPrime").value + "は素数か？" + str;
+      document.getElementById('isPrimeResult').textContent = document.getElementById("isPrime").value + "は素数か？" + str;
     })
     .fail(function() {
       alert("error");
@@ -66,8 +66,6 @@ function getChangedStrFromArrayListStrToMathJaxStr(integerArrayListstr) {
   str = str.substring(0, str.length - 1);
   return "\\{" + str + "\\}";
 }
-
-
 //⬆︎⬆︎⬆︎ここまでは定義
 
 //ここからが動く所。
