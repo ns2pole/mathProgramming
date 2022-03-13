@@ -31,8 +31,6 @@ public class IntegerServiceImpl implements IntegerService {
 
     public boolean isPrime(int integer) {
         ArrayList<Integer> primes = this.getPrimeNumsUnder((int)Math.floor(Math.sqrt(integer)));
-        // Logger logger = LoggerFactory.getLogger(IntegerServiceImpl.class);
-        // logger.info(primes.toString());
         if(integer == 1) {
             return false;
         }
@@ -79,6 +77,25 @@ public class IntegerServiceImpl implements IntegerService {
     public int getEulerPhiFunctionValOf(int integer) {
         return this.getCoprimeNumsLowerThan(integer).size();
     }
+
+    public ArrayList<Integer> getPrimeFactorsOf(int integer) {
+        ArrayList<Integer> divisorCandidates = this.getPrimeNumsUnder((int)Math.floor(Math.sqrt(integer)));
+		ArrayList<Integer> primeFactors = new ArrayList<Integer>();
+		for(int i = 0;;) {
+            Integer testDivideInteger = divisorCandidates.get(i);
+			if(integer % testDivideInteger.intValue() == 0) {
+				integer = integer / testDivideInteger.intValue();
+				primeFactors.add(testDivideInteger);
+			} else {
+				i++;
+			}
+			if(isPrime(integer)) {
+				primeFactors.add(new Integer(integer));
+				break;
+			}
+		}
+		return primeFactors;
+	}
 
     //お試しで書いている。
     public String getStringForMathJaxAboutCayleyTableFrom(int input, int output) {

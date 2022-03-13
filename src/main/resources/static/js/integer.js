@@ -2,6 +2,7 @@ function request() {
   EulerPhiFunctionRequest();
   primeNumsUnderSetValRequest();
   isPrimeRequest();
+  primeFactorsRequest();
 };
 
 function EulerPhiFunctionRequest() {
@@ -17,10 +18,10 @@ function EulerPhiFunctionRequest() {
 }
 
 function primeNumsUnderSetValRequest() {
-  $('input[id="PrimeNumsUnderSetVal"]').change(function() {
-    $.ajax(getArrToSendIntegerByAjax(this, "/PrimeNumsUnderSetVal"))
+  $('input[id="primeNumsUnderSetVal"]').change(function() {
+    $.ajax(getArrToSendIntegerByAjax(this, "/primeNumsUnderSetVal"))
     .done(function(str) {
-      document.getElementById('primeNumsUnderSetValResult').textContent = document.getElementById("PrimeNumsUnderSetVal").value + "以下の素数の集合 = $" + getChangedStrFromArrayListStrToMathJaxStr(str) + "$";
+      document.getElementById('primeNumsUnderSetValResult').textContent = document.getElementById("primeNumsUnderSetVal").value + "以下の素数の集合 = $" + getChangedStrFromArrayListStrToMathJaxStr(str) + "$";
     })
     .fail(function() {
       alert("error");
@@ -33,6 +34,18 @@ function isPrimeRequest() {
     $.ajax(getArrToSendIntegerByAjax(this, "/isPrime"))
     .done(function(str) {
       document.getElementById('isPrimeResult').textContent = document.getElementById("isPrime").value + "は素数か？" + str;
+    })
+    .fail(function() {
+      alert("error");
+    })
+  });
+}
+
+function primeFactorsRequest() {
+  $('input[id="primeFactors"]').change(function() {
+    $.ajax(getArrToSendIntegerByAjax(this, "/primeFactors"))
+    .done(function(str) {
+      document.getElementById('primeFactorsResult').textContent = str;
     })
     .fail(function() {
       alert("error");

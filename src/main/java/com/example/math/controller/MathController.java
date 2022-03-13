@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 @Controller
 public class MathController {
+    
     @ResponseBody
     @RequestMapping("/EulerPhiFunction")
     public String getEulerFunctionValStr(int integer) {
@@ -17,7 +18,7 @@ public class MathController {
     }
 
     @ResponseBody
-    @RequestMapping("/PrimeNumsUnderSetVal")
+    @RequestMapping("/primeNumsUnderSetVal")
     public String getPrimeNumsStrUnderSetVal(int integer) {
         IntegerServiceImpl impl = new IntegerServiceImpl();
         ArrayList<Integer> primeNumsUnderSetVal = impl.getPrimeNumsUnder(integer);
@@ -32,5 +33,12 @@ public class MathController {
         return String.valueOf(isPrime);
     }
     
+    @ResponseBody
+    @RequestMapping("/primeFactors")
+    public String getPrimeFactorsStr(int integer) {
+        IntegerServiceImpl impl = new IntegerServiceImpl();
+        ArrayList<Integer> primeFactors = impl.getPrimeFactorsOf(integer);
+        return String.valueOf(primeFactors);
+    }
 
 }

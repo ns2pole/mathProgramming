@@ -21,23 +21,21 @@
     <body>
         <h2>\( \displaystyle \dagger \ \ \)初等整数論のページ</h2>
         <h4>
-            <form method="get" action="/EulerPhiFunction" onsubmit="return false;">
-                <input id="EulerPhiFunction" type="text" placeholder= "you can get Euler function value">
-            </form>
+            <input id="EulerPhiFunction" type="text" placeholder= "you can get Euler function value">
         </h4>
         <h4 id="EulerPhiFunctionCalculateResult"/>
         <h4>
-            <form method="get" action="/PrimeNumsUnderSetVal" onsubmit="return false;">
-                <input id="PrimeNumsUnderSetVal" type="text" placeholder= "you can get primes under this value">
-            </form>
+            <input id="primeNumsUnderSetVal" type="text" placeholder= "you can get primes under this value">
         </h4>
         <h4 id="primeNumsUnderSetValResult"/>
         <h4>
-            <form method="get" action="/isPrime" onsubmit="return false;">
-                <input id="isPrime" type="text" placeholder= "you can judge prime">
-            </form>
+            <input id="isPrime" type="text" placeholder= "you can judge prime">
         </h4>
         <h4 id="isPrimeResult"/>
+        <h4>
+            <input id="primeFactors" type="text" placeholder= "you can get prime factors">
+        </h4>
+        <h4 id="primeFactorsResult"/>
         <h4 th:text="${cayleyTable}" />
     </body>
     <script type="text/javascript" th:src="@{/js/integer.js}"></script>
