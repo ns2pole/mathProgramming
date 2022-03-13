@@ -34,6 +34,16 @@ function isPrimeRequest() {
     $.ajax(getArrToSendIntegerByAjax(this, "/isPrime"))
     .done(function(str) {
       document.getElementById('isPrimeResult').textContent = document.getElementById("isPrime").value + "は素数か？" + str;
+      if(str == "false") {
+        inputForm = document.getElementById('isPrime');
+        $.ajax(getArrToSendIntegerByAjax(inputForm, "/primeFactors"))
+        .done(function(str) {
+          document.getElementById('isPrimeResult').textContent += str;
+        })
+        .fail(function() {
+          alert("error");
+        })
+      }
     })
     .fail(function() {
       alert("error");
