@@ -3,25 +3,26 @@ import java.util.LinkedHashSet;
 import java.util.ArrayList;
 
 public class IntegerUnitGroup extends Group<Integer> {
-	LinkedHashSet<IntegerUnitGroupElement> integerUnitGroupElements;
+	private LinkedHashSet<IntegerUnitGroupElement> integerUnitGroupElements;
+	Graph<IntegerUnitGroupElement> graph;
 
-	public IntegerUnitGroup(LinkedHashSet<IntegerUnitGroupElement> integerUnitGroupElements, Graph<Integer> graph) {
+	public IntegerUnitGroup(LinkedHashSet<IntegerUnitGroupElement> integerUnitGroupElements, Graph<IntegerUnitGroupElement> graph) {
 		this.integerUnitGroupElements = integerUnitGroupElements;
 		this.graph = graph;
 	}
 
-	public static Graph<Integer> getGraphOfUnitGroupFor(int modInt) {
-		LinkedHashSet<Map<Integer>> maps = new LinkedHashSet<Map<Integer>>();
+	public static Graph<IntegerUnitGroupElement> getGraphOfUnitGroupFor(int modInt) {
+		LinkedHashSet<Map<IntegerUnitGroupElement>> maps = new LinkedHashSet<Map<IntegerUnitGroupElement>>();
 		LinkedHashSet<IntegerUnitGroupElement> elements = IntegerUnitGroup.getElementsOfReplicativeGroup(modInt);
 		ArrayList<IntegerUnitGroupElement> elementList = new ArrayList<IntegerUnitGroupElement>(elements);
 		for(int i = 0; i < elementList.size(); i++) {
 			for(int j = 0; j < elementList.size(); j++) {
 				Integer remainder = (elementList.get(i).val * elementList.get(j).val) % modInt;
 				IntegerUnitGroupElement remainderElement = new IntegerUnitGroupElement(remainder);
-				maps.add(new Map<Integer>(elementList.get(i), elementList.get(j), remainderElement));
+				maps.add(new Map<IntegerUnitGroupElement>(elementList.get(i), elementList.get(j), remainderElement));
 			}	
 		}
-		return new Graph<Integer>(maps);
+		return new Graph<IntegerUnitGroupElement>(maps);
 	}
 		
 	public static LinkedHashSet<IntegerUnitGroupElement> getElementsOfReplicativeGroup(int modInt) {	
@@ -62,6 +63,7 @@ public class IntegerUnitGroup extends Group<Integer> {
         return arr;
     }
 
+	//TODO:重複しているがうまく継承できず綺麗な書き方が不明。
 	@Override
 	public IntegerUnitGroupElement getElementHas(Integer val) {
 		ArrayList<IntegerUnitGroupElement> elementList = new ArrayList<IntegerUnitGroupElement>(this.integerUnitGroupElements);

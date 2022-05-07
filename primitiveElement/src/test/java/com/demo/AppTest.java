@@ -42,7 +42,7 @@ public class AppTest extends TestCase {
     public void test_product_unit_group() {
         int modInt1 = 10;
 	    LinkedHashSet<IntegerUnitGroupElement> elements = IntegerUnitGroup.getElementsOfReplicativeGroup(modInt1);
-	    Graph<Integer> graph = IntegerUnitGroup.getGraphOfUnitGroupFor(modInt1);
+	    Graph<IntegerUnitGroupElement> graph = IntegerUnitGroup.getGraphOfUnitGroupFor(modInt1);
         IntegerUnitGroup integerUnitGroup = new IntegerUnitGroup(elements, graph);
         IntegerUnitGroupElement e2 = integerUnitGroup.getElementHas(Integer.valueOf(2));
         IntegerUnitGroupElement e3 = integerUnitGroup.getElementHas(Integer.valueOf(3));

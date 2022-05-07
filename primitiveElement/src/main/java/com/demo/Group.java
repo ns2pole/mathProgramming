@@ -3,9 +3,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
 public class Group<T> extends Set<T> {
-	LinkedHashSet<GroupElement<T>> groupElements;
+	private LinkedHashSet<GroupElement<T>> groupElements;
 	Graph<T> graph;
 
+	//TODO:重複しているがうまく継承できず綺麗な書き方が不明。
 	@Override
 	public GroupElement<T> getElementHas(T val) {
 		ArrayList<GroupElement<T>> elementList = new ArrayList<GroupElement<T>>(this.groupElements);

@@ -6,10 +6,11 @@ public class IntegerUnitGroupElement extends GroupElement<Integer>{
 	public IntegerUnitGroupElement(Integer val) {
 		super(val);
 	}
-
-	public IntegerUnitGroupElement operateTo(IntegerUnitGroupElement e, Graph<Integer> graph) {
-	//群による。G×G→Gのグラフによる。G×G→Gのグラフから作る。
-		ArrayList<Map<Integer>> maps = new ArrayList<Map<Integer>>(graph.maps);
+	
+	//TODO:Groupと重複しているがうまく継承できず綺麗な書き方が不明。
+	public IntegerUnitGroupElement operateTo(IntegerUnitGroupElement e, Graph<IntegerUnitGroupElement> graph) {
+		//群による。G×G→Gのグラフによる。G×G→Gのグラフから作る。
+		ArrayList<Map<IntegerUnitGroupElement>> maps = new ArrayList<Map<IntegerUnitGroupElement>>(graph.maps);
 		IntegerUnitGroupElement element = new IntegerUnitGroupElement(null);
 		for(int i = 0; i < maps.size(); i++) {
 			if(maps.get(i).argument1.val.equals(this.val) && maps.get(i).argument2.val.equals(e.val)) {
@@ -19,6 +20,4 @@ public class IntegerUnitGroupElement extends GroupElement<Integer>{
 		}
 		return element;
 	}
-
-	
 }

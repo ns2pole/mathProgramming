@@ -3,7 +3,7 @@ import java.util.LinkedHashSet;
 import java.util.ArrayList;
 
 public class Set<T> {
-	LinkedHashSet<Element<T>> elements;
+	private LinkedHashSet<Element<T>> elements;
 
 	public Element<T> getElementHas(T val) {
 		ArrayList<Element<T>> elementList = new ArrayList<Element<T>>(this.elements);

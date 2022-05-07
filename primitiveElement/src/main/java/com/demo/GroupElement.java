@@ -12,8 +12,8 @@ public class GroupElement<T> extends Element<T>{
 		ArrayList<Map<T>> maps = new ArrayList<Map<T>>(graph.maps);
 		GroupElement<T> element = new GroupElement<T>(null);
 		for(int i = 0; i < maps.size(); i++) {
-			if(maps.get(i).argument1.val.equals(this.val) && maps.get(i).argument2.val.equals(e.val)) {
-				element.val = maps.get(i).result.val;
+			if(maps.get(i).argument1.equals(this.val) && maps.get(i).argument2.equals(e.val)) {
+				element.val = maps.get(i).result;
 				break;
 			}
 		}
