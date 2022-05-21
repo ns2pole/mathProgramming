@@ -1,13 +1,16 @@
 package com.demo;
 import java.util.LinkedHashSet;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 
 public class Group<G> {
-	LinkedHashSet<G> groupElements;
-	Graph<G> graph;
+	BinaryOperator<G> op;
+	G unit;
+	Function<G, G> getInverseFn;
 
-	Group(LinkedHashSet<G> groupElements, Graph<G> graph) {
-		this.groupElements = groupElements;
-		this.graph = graph;
+	Group(BinaryOperator<G> op, G unit, Function<G, G> getInverseFn) {
+		this.op = op;
+		this.unit = unit;
+		this.getInverseFn = getInverseFn;
 	}
-
 }

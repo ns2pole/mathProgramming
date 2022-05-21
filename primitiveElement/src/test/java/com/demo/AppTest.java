@@ -4,6 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import java.util.LinkedHashSet;
+import javax.naming.directory.ModificationItem;
 
 
 /**
@@ -42,8 +43,7 @@ public class AppTest extends TestCase {
     public void test_product_unit_group() {
         int modInt1 = 10;
 	    LinkedHashSet<ModInteger> elements = ModInteger.getElementsOfReplicativeGroup(modInt1);
-	    Graph<ModInteger> graph = ModInteger.getGraphOfUnitGroupFor(modInt1);
-        Group<ModInteger> integerUnitGroup = new Group<ModInteger>(elements, graph);
+	    BinaryOperator<ModInteger> op1 = ModInteger.getGraphOfUnitGroupFor(modInt1);
         ModInteger m2 = new ModInteger(Integer.valueOf(2));
         GroupElement<ModInteger> ge2 = new GroupElement(m2);
         ModInteger m3 = new ModInteger(Integer.valueOf(3));
@@ -54,10 +54,12 @@ public class AppTest extends TestCase {
         GroupElement<ModInteger> ge7 = new GroupElement(m7);
         ModInteger m9 = new ModInteger(Integer.valueOf(9));
         GroupElement<ModInteger> ge9 = new GroupElement(m9);
-        System.out.println(integerUnitGroup.graph.maps.size());
-        System.out.println(ge3.operateTo(ge9, integerUnitGroup.graph).val);
-        assertEquals(new ModInteger(Integer.valueOf(7)), ge3.operateTo(ge9, integerUnitGroup.graph).val);
-        assertEquals(new ModInteger(Integer.valueOf(3)), ge7.operateTo(ge9, integerUnitGroup.graph).val);
-        assertEquals(new ModInteger(Integer.valueOf(1)), ge9.operateTo(ge9, integerUnitGroup.graph).val);
+        assertEquals(new ModInteger(Integer.valueOf(7)), op1.calc(m3, m9));
+        assertEquals(new ModInteger(Integer.valueOf(3)), op1.calc(m7, m9));
+        assertEquals(new ModInteger(Integer.valueOf(1)), op1.calc(m9, m9));
+        BinaryOperator<ModInteger> op2 = new ModIntegerBinaryOperator(modInt1);
+        assertEquals(new ModInteger(Integer.valueOf(7)), op2.calc(m3, m9));
+        assertEquals(new ModInteger(Integer.valueOf(3)), op2.calc(m7, m9));
+        assertEquals(new ModInteger(Integer.valueOf(1)), op2.calc(m9, m9));
     }
 }
