@@ -1,10 +1,11 @@
 package com.demo;
 import java.util.ArrayList;
 
-public class GroupElement<T> extends Element<T>{
+public class GroupElement<T> {
+	T val;
 	
 	public GroupElement(T val) {
-		super(val);
+		this.val = val;
 	}
 
 	public GroupElement<T> operateTo(GroupElement<T> e, Graph<T> graph) {

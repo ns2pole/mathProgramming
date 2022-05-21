@@ -41,21 +41,18 @@ public class AppTest extends TestCase {
      */
     public void test_product_unit_group() {
         int modInt1 = 10;
-	    LinkedHashSet<IntegerUnitGroupElement> elements = IntegerUnitGroup.getElementsOfReplicativeGroup(modInt1);
-	    Graph<IntegerUnitGroupElement> graph = IntegerUnitGroup.getGraphOfUnitGroupFor(modInt1);
-        IntegerUnitGroup integerUnitGroup = new IntegerUnitGroup(elements, graph);
-        IntegerUnitGroupElement e2 = integerUnitGroup.getElementHas(Integer.valueOf(2));
-        IntegerUnitGroupElement e3 = integerUnitGroup.getElementHas(Integer.valueOf(3));
-        IntegerUnitGroupElement e4 = integerUnitGroup.getElementHas(Integer.valueOf(4));
-        IntegerUnitGroupElement e7 = integerUnitGroup.getElementHas(Integer.valueOf(7));
-        IntegerUnitGroupElement e9 = integerUnitGroup.getElementHas(Integer.valueOf(9));
-        assertEquals(null, e2.val);
-        assertEquals(Integer.valueOf(3), e3.val);
-        assertEquals(null, e4.val);
-        assertEquals(Integer.valueOf(9), e9.val);
-        assertEquals(Integer.valueOf(7), e3.operateTo(e9, integerUnitGroup.graph).val);
-        assertEquals(Integer.valueOf(3), e7.operateTo(e9, integerUnitGroup.graph).val);
-        assertEquals(Integer.valueOf(1), e9.operateTo(e9, integerUnitGroup.graph).val);
-
+	    LinkedHashSet<ModInteger> elements = ModInteger.getElementsOfReplicativeGroup(modInt1);
+	    Graph<ModInteger> graph = ModInteger.getGraphOfUnitGroupFor(modInt1);
+        Group<ModInteger> integerUnitGroup = new Group<ModInteger>(elements, graph);
+        ModInteger m2 = new ModInteger(Integer.valueOf(2));
+        ModInteger m3 = new ModInteger(Integer.valueOf(3));
+        ModInteger m4 = new ModInteger(Integer.valueOf(4));
+        ModInteger m7 = new ModInteger(Integer.valueOf(7));
+        ModInteger m9 = new ModInteger(Integer.valueOf(9));
+        assertEquals(Integer.valueOf(7), m3.operateTo(m9, integerUnitGroup.graph).val);
+        assertEquals(Integer.valueOf(3), m7.operateTo(m9, integerUnitGroup.graph).val);
+        assertEquals(Integer.valueOf(1), m9.operateTo(m9, integerUnitGroup.graph).val);
     }
+
+
 }
