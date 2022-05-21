@@ -8,18 +8,18 @@ public class ModInteger extends GroupElement<Integer> {
 	}
 	
 	// //TODO:Groupと重複しているがうまく継承できず綺麗な書き方が不明。
-	public ModInteger operateTo(ModInteger e, Graph<ModInteger> graph) {
-		//群による。G×G→Gのグラフによる。G×G→Gのグラフから作る。
-		ArrayList<Map<ModInteger>> maps = new ArrayList<Map<ModInteger>>(graph.maps);
-		ModInteger element = new ModInteger(null);
-		for(int i = 0; i < maps.size(); i++) {
-			if(maps.get(i).argument1.val.equals(this.val) && maps.get(i).argument2.val.equals(e.val)) {
-				element.val = maps.get(i).result.val;
-				break;
-			}
-		}
-		return element;
-	}
+	// public ModInteger operateTo(ModInteger e, Graph<ModInteger> graph) {
+	// 	//群による。G×G→Gのグラフによる。G×G→Gのグラフから作る。
+	// 	ArrayList<Map<ModInteger>> maps = new ArrayList<Map<ModInteger>>(graph.maps);
+	// 	ModInteger element = new ModInteger(null);
+	// 	for(int i = 0; i < maps.size(); i++) {
+	// 		if(maps.get(i).argument1.val.equals(this.val) && maps.get(i).argument2.val.equals(e.val)) {
+	// 			element.val = maps.get(i).result.val;
+	// 			break;
+	// 		}
+	// 	}
+	// 	return element;
+	// }
 
 
 	public static Graph<ModInteger> getGraphOfUnitGroupFor(int modInt) {
@@ -73,8 +73,13 @@ public class ModInteger extends GroupElement<Integer> {
         return arr;
     }
 
-	public boolean equals(ModInteger modInteger) {
-		return (this.val == modInteger.val);
+	public boolean equals(Object modInteger) {
+		ModInteger m = (ModInteger) modInteger; 
+		return (this.val == m.val);
+	}
+
+	public String toString() {
+		return String.format("[%d]", this.val);
 	}
 
 }

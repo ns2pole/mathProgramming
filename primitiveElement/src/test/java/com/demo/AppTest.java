@@ -45,14 +45,19 @@ public class AppTest extends TestCase {
 	    Graph<ModInteger> graph = ModInteger.getGraphOfUnitGroupFor(modInt1);
         Group<ModInteger> integerUnitGroup = new Group<ModInteger>(elements, graph);
         ModInteger m2 = new ModInteger(Integer.valueOf(2));
+        GroupElement<ModInteger> ge2 = new GroupElement(m2);
         ModInteger m3 = new ModInteger(Integer.valueOf(3));
+        GroupElement<ModInteger> ge3 = new GroupElement(m3);
         ModInteger m4 = new ModInteger(Integer.valueOf(4));
+        GroupElement<ModInteger> ge4 = new GroupElement(m4);
         ModInteger m7 = new ModInteger(Integer.valueOf(7));
+        GroupElement<ModInteger> ge7 = new GroupElement(m7);
         ModInteger m9 = new ModInteger(Integer.valueOf(9));
-        assertEquals(Integer.valueOf(7), m3.operateTo(m9, integerUnitGroup.graph).val);
-        assertEquals(Integer.valueOf(3), m7.operateTo(m9, integerUnitGroup.graph).val);
-        assertEquals(Integer.valueOf(1), m9.operateTo(m9, integerUnitGroup.graph).val);
+        GroupElement<ModInteger> ge9 = new GroupElement(m9);
+        System.out.println(integerUnitGroup.graph.maps.size());
+        System.out.println(ge3.operateTo(ge9, integerUnitGroup.graph).val);
+        assertEquals(new ModInteger(Integer.valueOf(7)), ge3.operateTo(ge9, integerUnitGroup.graph).val);
+        assertEquals(new ModInteger(Integer.valueOf(3)), ge7.operateTo(ge9, integerUnitGroup.graph).val);
+        assertEquals(new ModInteger(Integer.valueOf(1)), ge9.operateTo(ge9, integerUnitGroup.graph).val);
     }
-
-
 }

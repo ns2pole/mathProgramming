@@ -1,10 +1,10 @@
 package com.demo;
 import java.util.LinkedHashSet;
 
-public class Graph<T> {
-	LinkedHashSet<Map<T>> maps;
+public class Graph<G> {
+	LinkedHashSet<Map<G>> maps;
 	
-	public Graph(LinkedHashSet<Map<T>> maps) {
+	public Graph(LinkedHashSet<Map<G>> maps) {
 		this.maps = maps;
 	}
 }
