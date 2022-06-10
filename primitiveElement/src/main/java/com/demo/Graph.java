@@ -19,4 +19,8 @@ public class Graph<A> implements BinaryOperator<A> {
 		}
 		throw new RuntimeException();
 	}
+
+	public String toString() {
+		return this.maps.toString();
+	}
 }

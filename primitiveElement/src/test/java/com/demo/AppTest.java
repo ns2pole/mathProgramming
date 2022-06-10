@@ -44,6 +44,7 @@ public class AppTest extends TestCase {
         int modInt1 = 10;
 	    LinkedHashSet<ModInteger> elements = ModInteger.getElementsOfReplicativeGroup(modInt1);
 	    BinaryOperator<ModInteger> op1 = ModInteger.getGraphOfUnitGroupFor(modInt1);
+        System.out.println(op1);
         ModInteger m2 = new ModInteger(Integer.valueOf(2));
         GroupElement<ModInteger> ge2 = new GroupElement(m2);
         ModInteger m3 = new ModInteger(Integer.valueOf(3));
