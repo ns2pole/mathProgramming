@@ -75,21 +75,15 @@ public class AppTest extends TestCase {
     /**
      * Rigourous Test :-)
      */
-    public void test_product_unit_group() {
+    public void test_product_on_irreducible_cosets_group() {
         int modInt1 = 10;
-//	    LinkedHashSet<ModInteger> elements = ModInteger.getElementsOfIrreducibleCosetsGroup(modInt1);
-	    BinaryOperator<ModInteger> op1 = ModInteger.getGraphOfUnitGroupFor(modInt1);
+	    BinaryOperator<ModInteger> op1 = ModInteger.getGraphOfIrreducibleCosetsGroupFor(modInt1);
         System.out.println(op1);
         ModInteger m2 = new ModInteger(modInt1, Integer.valueOf(2));
-        GroupElement<ModInteger> ge2 = new GroupElement(m2);
         ModInteger m3 = new ModInteger(modInt1, Integer.valueOf(3));
-        GroupElement<ModInteger> ge3 = new GroupElement(m3);
         ModInteger m4 = new ModInteger(modInt1, Integer.valueOf(4));
-        GroupElement<ModInteger> ge4 = new GroupElement(m4);
         ModInteger m7 = new ModInteger(modInt1, Integer.valueOf(7));
-        GroupElement<ModInteger> ge7 = new GroupElement(m7);
         ModInteger m9 = new ModInteger(modInt1, Integer.valueOf(9));
-        GroupElement<ModInteger> ge9 = new GroupElement(m9);
         assertEquals(new ModInteger(modInt1, Integer.valueOf(7)), op1.calc(m3, m9));
         assertEquals(new ModInteger(modInt1, Integer.valueOf(3)), op1.calc(m7, m9));
         assertEquals(new ModInteger(modInt1, Integer.valueOf(1)), op1.calc(m9, m9));

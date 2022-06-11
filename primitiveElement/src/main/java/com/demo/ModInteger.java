@@ -27,7 +27,7 @@ public class ModInteger extends GroupElement<Integer> {
 	// }
 
 
-	public static Graph<ModInteger> getGraphOfUnitGroupFor(int modInt) {
+	public static Graph<ModInteger> getGraphOfIrreducibleCosetsGroupFor(int modInt) {
 		LinkedHashSet<Map<ModInteger>> maps = new LinkedHashSet<Map<ModInteger>>();
 		LinkedHashSet<ModInteger> elements = getElementsOfIrreducibleCosetsGroup(modInt);
 		ArrayList<ModInteger> elementList = new ArrayList<ModInteger>(elements);
@@ -55,7 +55,7 @@ public class ModInteger extends GroupElement<Integer> {
 
 	public static IrreducibleCosetsGroup getIrreducibleCosetsGroup(Integer modulo) {
 		LinkedHashSet<ModInteger> elements = getElementsOfIrreducibleCosetsGroup(modulo);
-		BinaryOperator<ModInteger> bo = getGraphOfUnitGroupFor(modulo);
+		BinaryOperator<ModInteger> bo = getGraphOfIrreducibleCosetsGroupFor(modulo);
 		return new IrreducibleCosetsGroup(modulo, elements, bo);
 	}
 	
@@ -92,7 +92,7 @@ public class ModInteger extends GroupElement<Integer> {
 
 //	public Group<ModInteger> generateCyclicGroup() {
 //		LinkedHashSet<ModInteger> cyclicGroup = new LinkedHashSet<ModInteger>();
-//		BinaryOperator<ModInteger> bo = getGraphOfUnitGroupFor(this.modulo);
+//		BinaryOperator<ModInteger> bo = getGraphOfIrreducibleCosetsGroupFor(this.modulo);
 ////		ModInteger clone = new ModInteger(this.modulo, this.val);
 //		ModInteger m = bo.calc(this, this);
 //	}
@@ -110,7 +110,7 @@ public class ModInteger extends GroupElement<Integer> {
 
 	//TODO:n<=0の場合
 	public ModInteger getNthPower(Integer n) {
-		BinaryOperator<ModInteger> bo = getGraphOfUnitGroupFor(this.modulo);
+		BinaryOperator<ModInteger> bo = getGraphOfIrreducibleCosetsGroupFor(this.modulo);
 		if(1 < n) {
 			return bo.calc(this, this.getNthPower(n - 1));
 		} else {
