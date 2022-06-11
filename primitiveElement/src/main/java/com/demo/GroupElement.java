@@ -4,10 +4,12 @@ import java.util.ArrayList;
 public class GroupElement<T> {
 	T val;
 	Group<T> affiliationGroup;
-	public GroupElement(T val) {
+	public GroupElement(T val, Group<T> affiliationGroup) {
 		this.val = val;
+		this.affiliationGroup = affiliationGroup;
 	}
 
+	//TODO:n<=0の時
 	public GroupElement<T> getNthPower(Integer n) {
 		BinaryOperator<T> bo = this.affiliationGroup.op;
 		if(1 < n) {
@@ -18,6 +20,17 @@ public class GroupElement<T> {
 			return this;
 		}
 	}
+
+	public Integer getOrder() {
+		Integer order = 2;
+		GroupElement<T> unit = this.affiliationGroup.unit;
+		while (!this.getNthPower(order).equals(unit)) {
+			order++;
+		}
+		return order;
+	}
+
+	
 	public String toString() {
 		return String.format("%n val -> %s" + "%n group -> %s", this.val, this.affiliationGroup);
 	}

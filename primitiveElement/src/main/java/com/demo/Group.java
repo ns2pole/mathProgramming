@@ -5,11 +5,11 @@ import java.util.function.Function;
 public class Group<G> {
 	LinkedHashSet<G> elements;
 	BinaryOperator<G> op;
-	G unit;
+	GroupElement<G> unit;
 	Function<G, G> getInverseFn;
 
 //	public Group(LinkedHashSet<G> elements, BinaryOperator<G> op, G unit, Function<G, G> getInverseFn) {
-	 public Group(LinkedHashSet<G> elements, BinaryOperator<G> op, G unit) {
+	 public Group(LinkedHashSet<G> elements, BinaryOperator<G> op, GroupElement<G> unit) {
 	 	this.elements = elements;
 	 	this.op = op;
 	 	this.unit = unit;

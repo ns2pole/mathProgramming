@@ -5,7 +5,7 @@ import java.util.function.Function;
 
 public class IrreducibleCosetsGroup extends Group<ModInteger>{
 	int modulo;
-	public IrreducibleCosetsGroup(int modulo, LinkedHashSet<ModInteger> elements, BinaryOperator<ModInteger> op, ModInteger unit) {
+	public IrreducibleCosetsGroup(int modulo, LinkedHashSet<ModInteger> elements, BinaryOperator<ModInteger> op, GroupElement<ModInteger> unit) {
 //	public IrreducibleCosetsGroup(int modulo, LinkedHashSet<ModInteger> elements, BinaryOperator<ModInteger> op, ModInteger unit, Function<ModInteger, ModInteger> getInverseFn) {
 		super(elements, op, unit);
 		this.modulo = modulo;
@@ -36,7 +36,7 @@ public class IrreducibleCosetsGroup extends Group<ModInteger>{
 	public static IrreducibleCosetsGroup getIrreducibleCosetsGroup(Integer modulo) {
 		LinkedHashSet<ModInteger> elements = getElementsOfIrreducibleCosetsGroup(modulo);
 		BinaryOperator<ModInteger> bo = getGraphOfIrreducibleCosetsGroupFor(modulo);
-		ModInteger unit = new ModInteger(modulo, 1);
+		GroupElement<ModInteger> unit = new GroupElement<ModInteger>() new ModInteger(modulo, 1);
 		return new IrreducibleCosetsGroup(modulo, elements, bo, unit);
 	}
 
