@@ -4,6 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.util.LinkedHashSet;
+
 /**
  * Unit test for simple App.
  */
@@ -34,21 +36,62 @@ public class AppTest extends TestCase {
         assertTrue( true );
     }
 
+    public void test_hash_set_equals() {
+        LinkedHashSet<ModInteger> ms1 = IrreducibleCosetsGroup.getIrreducibleCosetsGroup(Integer.valueOf(10) ).elements;
+        LinkedHashSet<ModInteger> ms2 = IrreducibleCosetsGroup.getIrreducibleCosetsGroup(Integer.valueOf(10) ).elements;
+        LinkedHashSet<ModInteger> s = new LinkedHashSet<ModInteger>();
+        Integer tenModulo = Integer.valueOf(10);
+        ModInteger m1_10 = new ModInteger(tenModulo, Integer.valueOf(1));
+        ModInteger m3_10 = new ModInteger(tenModulo, Integer.valueOf(3));
+        ModInteger m7_10 = new ModInteger(tenModulo, Integer.valueOf(7));
+        ModInteger m9_10 = new ModInteger(tenModulo, Integer.valueOf(9));
+        s.add(m1_10);
+        s.add(m3_10);
+        s.add(m7_10);
+        s.add(m9_10);
+        assertEquals(ms1, ms2);
+        assertEquals(ms2, s);
+    }
+
     public void test_get_nth_power() {
         Integer tenModulo = Integer.valueOf(10);
         Integer fourteenModulo = Integer.valueOf(14);
+        ModInteger m1_10 = new ModInteger(tenModulo, Integer.valueOf(1));
         ModInteger m3_10 = new ModInteger(tenModulo, Integer.valueOf(3));
-        assertEquals(new ModInteger(tenModulo, Integer.valueOf(3)), m3_10.getNthPower(1));
-        assertEquals(new ModInteger(tenModulo, Integer.valueOf(9)), m3_10.getNthPower(2));
-        assertEquals(new ModInteger(tenModulo, Integer.valueOf(7)), m3_10.getNthPower(3));
-        assertEquals(new ModInteger(tenModulo, Integer.valueOf(1)), m3_10.getNthPower(4));
-        ModInteger m3_14 = new ModInteger(fourteenModulo, Integer.valueOf(3));
-        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(3)), m3_14.getNthPower(1));
-        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(9)), m3_14.getNthPower(2));
-        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(13)), m3_14.getNthPower(3));
-        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(11)), m3_14.getNthPower(4));
-        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(5)), m3_14.getNthPower(5));
-        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(1)), m3_14.getNthPower(6));
+        ModInteger m7_10 = new ModInteger(tenModulo, Integer.valueOf(7));
+        ModInteger m9_10 = new ModInteger(tenModulo, Integer.valueOf(9));
+        ModInteger m7_14 = new ModInteger(fourteenModulo, Integer.valueOf(7));
+        IrreducibleCosetsGroupElement icge1_10 = new IrreducibleCosetsGroupElement(m1_10);
+        IrreducibleCosetsGroupElement icge3_10 = new IrreducibleCosetsGroupElement(m3_10);
+        IrreducibleCosetsGroupElement icge7_10 = new IrreducibleCosetsGroupElement(m7_10);
+        IrreducibleCosetsGroupElement icge9_10 = new IrreducibleCosetsGroupElement(m9_10);
+        IrreducibleCosetsGroupElement icge7_14 = new IrreducibleCosetsGroupElement(m7_14);
+//        System.out.println(icge7_10.val.equals(icge3_10.getNthPower(3).val));
+//        System.out.println(icge7_10.affiliationGroup.elements);
+//        System.out.println(icge3_10.getNthPower(3).affiliationGroup.elements);
+        assertEquals(icge3_10, icge3_10.getNthPower(1));
+        assertEquals(icge9_10, icge3_10.getNthPower(2));
+        assertEquals(icge7_10, icge3_10.getNthPower(3));
+        assertEquals(icge1_10, icge3_10.getNthPower(4));
+        assertTrue(icge3_10.equals(icge3_10.getNthPower(1)));
+        assertTrue(icge9_10.equals(icge3_10.getNthPower(2)));
+        assertTrue(icge7_10.equals(icge3_10.getNthPower(3)));
+        assertTrue(icge1_10.equals(icge3_10.getNthPower(4)));
+        assertFalse(icge1_10.equals(icge3_10.getNthPower(1)));
+        assertFalse(icge1_10.equals(icge3_10.getNthPower(2)));
+        assertFalse(icge1_10.equals(icge3_10.getNthPower(3)));
+        assertFalse(icge7_14.equals(icge3_10.getNthPower(3)));
+//        assertEquals(new ModInteger(tenModulo, Integer.valueOf(3)), m3_10.getNthPower(1));
+//        assertEquals(new ModInteger(tenModulo, Integer.valueOf(9)), m3_10.getNthPower(2));
+//        assertEquals(new ModInteger(tenModulo, Integer.valueOf(7)), m3_10.getNthPower(3));
+//        assertEquals(new ModInteger(tenModulo, Integer.valueOf(1)), m3_10.getNthPower(4));
+//        ModInteger m3_14 = new ModInteger(fourteenModulo, Integer.valueOf(3));
+//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(3)), m3_14.getNthPower(1));
+//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(9)), m3_14.getNthPower(2));
+//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(13)), m3_14.getNthPower(3));
+//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(11)), m3_14.getNthPower(4));
+//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(5)), m3_14.getNthPower(5));
+//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(1)), m3_14.getNthPower(6));
     }
 
     public void test_get_order_of_element() {

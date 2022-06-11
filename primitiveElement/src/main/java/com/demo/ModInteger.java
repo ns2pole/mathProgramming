@@ -1,12 +1,12 @@
 package com.demo;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 
-public class ModInteger extends GroupElement<Integer> {
+public class ModInteger {
+	Integer val;
 	Integer modulo;
 	public ModInteger(Integer modulo, Integer val) {
-		super(val);
+		this.val = val;
 		this.modulo = modulo;
 	}
 
@@ -38,13 +38,6 @@ public class ModInteger extends GroupElement<Integer> {
         return arr;
     }
 
-//	public Group<ModInteger> generateCyclicGroup() {
-//		LinkedHashSet<ModInteger> cyclicGroup = new LinkedHashSet<ModInteger>();
-//		BinaryOperator<ModInteger> bo = getGraphOfIrreducibleCosetsGroupFor(this.modulo);
-////		ModInteger clone = new ModInteger(this.modulo, this.val);
-//		ModInteger m = bo.calc(this, this);
-//	}
-
 	public Integer getOrder() {
 		Integer order = 2;
 		ModInteger unit = new ModInteger(this.modulo, 1);
@@ -67,6 +60,10 @@ public class ModInteger extends GroupElement<Integer> {
 	public boolean equals(Object modInteger) {
 		ModInteger m = (ModInteger) modInteger;
 		return (this.val == m.val && this.modulo == m.modulo);
+	}
+
+	public int hashCode() {
+		return 0;
 	}
 
 	public String toString() {

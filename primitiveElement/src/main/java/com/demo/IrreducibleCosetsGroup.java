@@ -40,6 +40,9 @@ public class IrreducibleCosetsGroup extends Group<ModInteger>{
 		return new IrreducibleCosetsGroup(modulo, elements, bo, unit);
 	}
 
-
+	public boolean equals(Object o) {
+		IrreducibleCosetsGroup g = (IrreducibleCosetsGroup) o;
+		return g.modulo == this.modulo && this.unit.equals(g.unit) && this.elements.equals(g.elements);
+	}
 
 }

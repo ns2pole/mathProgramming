@@ -19,5 +19,24 @@ public class Group<G> {
 	 public Integer getOrder() {
 		 return this.elements.size();
 	 }
-	
+
+	public String toString() {
+		return String.format("%s", this.op);
+	}
+
+
+	public boolean equals(Object o) {
+		Group<G> g = (Group<G>) o;
+		return g.elements.equals(this.elements);
+	}
+
+	public int hashCode() {
+		return this.elements.hashCode();
+	}
+// 	public Group<G> generateCyclicGroup() {
+// 		LinkedHashSet<G> cyclicGroup = new LinkedHashSet<ModInteger>();
+// 		BinaryOperator<G> bo = getGraphOfIrreducibleCosetsGroupFor(this.modulo);
+// //		ModInteger clone = new ModInteger(this.modulo, this.val);
+// 		ModInteger m = bo.calc(this, this);
+// 	}
 }

@@ -23,4 +23,10 @@ public class Graph<A> implements BinaryOperator<A> {
 	public String toString() {
 		return this.maps.toString();
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		Graph m = (Graph) o;
+		return (this.maps.equals(m.maps));
+	}
 }
