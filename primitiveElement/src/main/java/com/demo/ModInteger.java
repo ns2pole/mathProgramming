@@ -38,24 +38,16 @@ public class ModInteger {
         return arr;
     }
 
-	public Integer getOrder() {
-		Integer order = 2;
-		ModInteger unit = new ModInteger(this.modulo, 1);
-		while (!this.getNthPower(order).equals(unit)) {
-			order++;
-		}
-		return order;
-	}
 
-	//TODO:n<=0の場合
-	public ModInteger getNthPower(Integer n) {
-		BinaryOperator<ModInteger> bo = IrreducibleCosetsGroup.getGraphOfIrreducibleCosetsGroupFor(this.modulo);
-		if(1 < n) {
-			return bo.calc(this, this.getNthPower(n - 1));
-		} else {
-			return this;
-		}
-	}
+
+//	public ModInteger getNthPower(Integer n) {
+//		BinaryOperator<ModInteger> bo = IrreducibleCosetsGroup.getGraphOfIrreducibleCosetsGroupFor(this.modulo);
+//		if(1 < n) {
+//			return bo.calc(this, this.getNthPower(n - 1));
+//		} else {
+//			return this;
+//		}
+//	}
 
 	public boolean equals(Object modInteger) {
 		ModInteger m = (ModInteger) modInteger;

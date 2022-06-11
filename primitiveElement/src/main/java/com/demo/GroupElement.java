@@ -7,7 +7,7 @@ public class GroupElement<T> {
 	public GroupElement(T val) {
 		this.val = val;
 	}
-
+	//TODO:n<=0の場合
 	public GroupElement<T> getNthPower(Integer n) {
 		BinaryOperator<T> bo = this.affiliationGroup.op;
 		if(1 < n) {
@@ -18,6 +18,16 @@ public class GroupElement<T> {
 			return this;
 		}
 	}
+
+	public Integer getOrder() {
+		Integer order = 2;
+		while (!this.getNthPower(order).equals(this)) {
+			order++;
+		}
+		return order - 1;
+	}
+
+
 	public String toString() {
 		return String.format("%n val -> %s" + "%n group -> %s", this.val, this.affiliationGroup);
 	}

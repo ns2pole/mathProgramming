@@ -66,9 +66,6 @@ public class AppTest extends TestCase {
         IrreducibleCosetsGroupElement icge7_10 = new IrreducibleCosetsGroupElement(m7_10);
         IrreducibleCosetsGroupElement icge9_10 = new IrreducibleCosetsGroupElement(m9_10);
         IrreducibleCosetsGroupElement icge7_14 = new IrreducibleCosetsGroupElement(m7_14);
-//        System.out.println(icge7_10.val.equals(icge3_10.getNthPower(3).val));
-//        System.out.println(icge7_10.affiliationGroup.elements);
-//        System.out.println(icge3_10.getNthPower(3).affiliationGroup.elements);
         assertEquals(icge3_10, icge3_10.getNthPower(1));
         assertEquals(icge9_10, icge3_10.getNthPower(2));
         assertEquals(icge7_10, icge3_10.getNthPower(3));
@@ -81,26 +78,22 @@ public class AppTest extends TestCase {
         assertFalse(icge1_10.equals(icge3_10.getNthPower(2)));
         assertFalse(icge1_10.equals(icge3_10.getNthPower(3)));
         assertFalse(icge7_14.equals(icge3_10.getNthPower(3)));
-//        assertEquals(new ModInteger(tenModulo, Integer.valueOf(3)), m3_10.getNthPower(1));
-//        assertEquals(new ModInteger(tenModulo, Integer.valueOf(9)), m3_10.getNthPower(2));
-//        assertEquals(new ModInteger(tenModulo, Integer.valueOf(7)), m3_10.getNthPower(3));
-//        assertEquals(new ModInteger(tenModulo, Integer.valueOf(1)), m3_10.getNthPower(4));
-//        ModInteger m3_14 = new ModInteger(fourteenModulo, Integer.valueOf(3));
-//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(3)), m3_14.getNthPower(1));
-//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(9)), m3_14.getNthPower(2));
-//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(13)), m3_14.getNthPower(3));
-//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(11)), m3_14.getNthPower(4));
-//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(5)), m3_14.getNthPower(5));
-//        assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(1)), m3_14.getNthPower(6));
     }
 
     public void test_get_order_of_element() {
         Integer tenModulo = Integer.valueOf(10);
         Integer fourteenModulo = Integer.valueOf(14);
+        ModInteger m1_10 = new ModInteger(tenModulo, Integer.valueOf(1));
         ModInteger m3_10 = new ModInteger(tenModulo, Integer.valueOf(3));
-        assertEquals(4, m3_10.getOrder().intValue());
-        ModInteger m3_14 = new ModInteger(fourteenModulo, Integer.valueOf(3));
-        assertEquals(6, m3_14.getOrder().intValue());
+        ModInteger m7_10 = new ModInteger(tenModulo, Integer.valueOf(7));
+        ModInteger m9_10 = new ModInteger(tenModulo, Integer.valueOf(9));
+        ModInteger m7_14 = new ModInteger(fourteenModulo, Integer.valueOf(7));
+        IrreducibleCosetsGroupElement icge1_10 = new IrreducibleCosetsGroupElement(m1_10);
+        IrreducibleCosetsGroupElement icge3_10 = new IrreducibleCosetsGroupElement(m3_10);
+        IrreducibleCosetsGroupElement icge7_10 = new IrreducibleCosetsGroupElement(m7_10);
+        IrreducibleCosetsGroupElement icge9_10 = new IrreducibleCosetsGroupElement(m9_10);
+        IrreducibleCosetsGroupElement icge7_14 = new IrreducibleCosetsGroupElement(m7_14);
+        assertEquals(4, icge3_10.getOrder().intValue());
     }
 
     public void test_get_order_of_irreducible_cosets_group() {
