@@ -48,6 +48,16 @@ public class ModInteger extends GroupElement<Integer> {
 		}		
 		return elements;
 	}
+
+	public static int getEulerPhiFunctionValOf(int integer) {
+        return getCoprimeNumsLowerThan(integer).size();
+    }
+
+	public static IrreducibleCosetsGroup getIrreducibleCosetsGroup(Integer modulo) {
+		LinkedHashSet<ModInteger> elements = getElementsOfIrreducibleCosetsGroup(modulo);
+		BinaryOperator<ModInteger> bo = getGraphOfUnitGroupFor(modulo);
+		return new IrreducibleCosetsGroup(modulo, elements, bo);
+	}
 	
 	public static ArrayList<Integer> getSievedNumsFor(int sieve, ArrayList<Integer> nums) {
 		for(int i = 0; i < nums.size(); i++) {
@@ -78,6 +88,8 @@ public class ModInteger extends GroupElement<Integer> {
         return arr;
     }
 
+
+
 //	public Group<ModInteger> generateCyclicGroup() {
 //		LinkedHashSet<ModInteger> cyclicGroup = new LinkedHashSet<ModInteger>();
 //		BinaryOperator<ModInteger> bo = getGraphOfUnitGroupFor(this.modulo);
@@ -85,6 +97,18 @@ public class ModInteger extends GroupElement<Integer> {
 //		ModInteger m = bo.calc(this, this);
 //	}
 
+	//TODO:単位元を使って書き直す
+	public Integer getOrder() {
+		Integer order = 2;
+		while (!this.getNthPower(order).equals(this.getNthPower(1))) {
+//		while (this.getNthPower(order).equals(this.irreducibleCosetsGroup().unit)) {
+			order++;
+		}
+		return order - 1;
+//		return order;
+	}
+
+	//TODO:n<=0の場合
 	public ModInteger getNthPower(Integer n) {
 		BinaryOperator<ModInteger> bo = getGraphOfUnitGroupFor(this.modulo);
 		if(1 < n) {
@@ -96,7 +120,7 @@ public class ModInteger extends GroupElement<Integer> {
 
 	public boolean equals(Object modInteger) {
 		ModInteger m = (ModInteger) modInteger;
-		return (this.val == m.val);
+		return (this.val == m.val && this.modulo == m.modulo);
 	}
 
 	public String toString() {

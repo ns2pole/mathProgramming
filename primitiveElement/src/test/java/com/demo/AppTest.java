@@ -54,6 +54,24 @@ public class AppTest extends TestCase {
         assertEquals(new ModInteger(fourteenModulo, Integer.valueOf(1)), m3_14.getNthPower(6));
     }
 
+    public void test_get_order_of_element() {
+        Integer tenModulo = Integer.valueOf(10);
+        Integer fourteenModulo = Integer.valueOf(14);
+        ModInteger m3_10 = new ModInteger(tenModulo, Integer.valueOf(3));
+        assertEquals(4, m3_10.getOrder().intValue());
+        ModInteger m3_14 = new ModInteger(fourteenModulo, Integer.valueOf(3));
+        assertEquals(6, m3_14.getOrder().intValue());
+    }
+
+    public void test_get_order_of_irreducible_cosets_group() {
+        Integer tenModulo = Integer.valueOf(10);
+        IrreducibleCosetsGroup ig_10 = ModInteger.getIrreducibleCosetsGroup(tenModulo);
+        assertEquals(4, ig_10.getOrder().intValue());
+        Integer fourteenModulo = Integer.valueOf(14);
+        IrreducibleCosetsGroup ig_14 = ModInteger.getIrreducibleCosetsGroup(fourteenModulo);
+        assertEquals(6, ig_14.getOrder().intValue());
+    }
+
     /**
      * Rigourous Test :-)
      */
