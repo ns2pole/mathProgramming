@@ -9,10 +9,10 @@ public class Group<G> {
 	Function<G, G> getInverseFn;
 
 //	public Group(LinkedHashSet<G> elements, BinaryOperator<G> op, G unit, Function<G, G> getInverseFn) {
-	 public Group(LinkedHashSet<G> elements, BinaryOperator<G> op) {
+	 public Group(LinkedHashSet<G> elements, BinaryOperator<G> op, G unit) {
 	 	this.elements = elements;
 	 	this.op = op;
-//	 	this.unit = unit;
+	 	this.unit = unit;
 //	 	this.getInverseFn = getInverseFn;
 	 }
 

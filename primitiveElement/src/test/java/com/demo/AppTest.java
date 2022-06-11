@@ -3,9 +3,6 @@ package com.demo;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import java.util.LinkedHashSet;
-import javax.naming.directory.ModificationItem;
-
 
 /**
  * Unit test for simple App.
@@ -65,10 +62,10 @@ public class AppTest extends TestCase {
 
     public void test_get_order_of_irreducible_cosets_group() {
         Integer tenModulo = Integer.valueOf(10);
-        IrreducibleCosetsGroup ig_10 = ModInteger.getIrreducibleCosetsGroup(tenModulo);
+        IrreducibleCosetsGroup ig_10 = IrreducibleCosetsGroup.getIrreducibleCosetsGroup(tenModulo);
         assertEquals(4, ig_10.getOrder().intValue());
         Integer fourteenModulo = Integer.valueOf(14);
-        IrreducibleCosetsGroup ig_14 = ModInteger.getIrreducibleCosetsGroup(fourteenModulo);
+        IrreducibleCosetsGroup ig_14 = IrreducibleCosetsGroup.getIrreducibleCosetsGroup(fourteenModulo);
         assertEquals(6, ig_14.getOrder().intValue());
     }
 
@@ -77,8 +74,7 @@ public class AppTest extends TestCase {
      */
     public void test_product_on_irreducible_cosets_group() {
         int modInt1 = 10;
-	    BinaryOperator<ModInteger> op1 = ModInteger.getGraphOfIrreducibleCosetsGroupFor(modInt1);
-        System.out.println(op1);
+	    BinaryOperator<ModInteger> op1 = IrreducibleCosetsGroup.getGraphOfIrreducibleCosetsGroupFor(modInt1);
         ModInteger m2 = new ModInteger(modInt1, Integer.valueOf(2));
         ModInteger m3 = new ModInteger(modInt1, Integer.valueOf(3));
         ModInteger m4 = new ModInteger(modInt1, Integer.valueOf(4));
