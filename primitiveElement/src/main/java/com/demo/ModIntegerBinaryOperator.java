@@ -9,6 +9,6 @@ public class ModIntegerBinaryOperator implements BinaryOperator<ModInteger> {
 	}
 
 	public ModInteger calc(ModInteger left, ModInteger right) {
-		return new ModInteger((left.val * right.val) % modulo);
+		return new ModInteger(modulo, (left.val * right.val) % modulo);
 	};
 }

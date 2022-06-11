@@ -3,9 +3,14 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
 public class ModInteger extends GroupElement<Integer> {
-	public ModInteger(Integer val) {
+	Integer modulo;
+	public ModInteger(Integer modulo, Integer val) {
 		super(val);
+		this.modulo = modulo;
 	}
+	// public Group<G> generateGroup() {
+	// 	this.op
+	// }
 	
 	// //TODO:Groupと重複しているがうまく継承できず綺麗な書き方が不明。
 	// public ModInteger operateTo(ModInteger e, Graph<ModInteger> graph) {
@@ -24,22 +29,22 @@ public class ModInteger extends GroupElement<Integer> {
 
 	public static Graph<ModInteger> getGraphOfUnitGroupFor(int modInt) {
 		LinkedHashSet<Map<ModInteger>> maps = new LinkedHashSet<Map<ModInteger>>();
-		LinkedHashSet<ModInteger> elements = getElementsOfReplicativeGroup(modInt);
+		LinkedHashSet<ModInteger> elements = getElementsOfIrreducibleCosetsGroup(modInt);
 		ArrayList<ModInteger> elementList = new ArrayList<ModInteger>(elements);
 		for(int i = 0; i < elementList.size(); i++) {
 			for(int j = 0; j < elementList.size(); j++) {
-				ModInteger remainder = new ModInteger((elementList.get(i).val * elementList.get(j).val) % modInt);
+				ModInteger remainder = new ModInteger(modInt, (elementList.get(i).val * elementList.get(j).val) % modInt);
 				maps.add(new Map<ModInteger>(elementList.get(i), elementList.get(j), remainder));
-			}	
+			}
 		}
 		return new Graph<ModInteger>(maps);
 	}
 		
-	public static LinkedHashSet<ModInteger> getElementsOfReplicativeGroup(int modInt) {	
+	public static LinkedHashSet<ModInteger> getElementsOfIrreducibleCosetsGroup(Integer modulo) {
 		LinkedHashSet<ModInteger> elements = new LinkedHashSet<ModInteger>();
-		ArrayList<Integer> integers = getCoprimeNumsLowerThan(modInt);
+		ArrayList<Integer> integers = getCoprimeNumsLowerThan(modulo);
 		for(int i = 0; i < integers.size(); i++) {
-			elements.add(new ModInteger(integers.get(i)));
+			elements.add(new ModInteger(modulo, integers.get(i)));
 		}		
 		return elements;
 	}
@@ -73,8 +78,24 @@ public class ModInteger extends GroupElement<Integer> {
         return arr;
     }
 
+//	public Group<ModInteger> generateCyclicGroup() {
+//		LinkedHashSet<ModInteger> cyclicGroup = new LinkedHashSet<ModInteger>();
+//		BinaryOperator<ModInteger> bo = getGraphOfUnitGroupFor(this.modulo);
+////		ModInteger clone = new ModInteger(this.modulo, this.val);
+//		ModInteger m = bo.calc(this, this);
+//	}
+
+	public ModInteger getNthPower(Integer n) {
+		BinaryOperator<ModInteger> bo = getGraphOfUnitGroupFor(this.modulo);
+		if(1 < n) {
+			return bo.calc(this, this.getNthPower(n - 1));
+		} else {
+			return this;
+		}
+	}
+
 	public boolean equals(Object modInteger) {
-		ModInteger m = (ModInteger) modInteger; 
+		ModInteger m = (ModInteger) modInteger;
 		return (this.val == m.val);
 	}
 
